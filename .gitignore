@@ -1,0 +1,9 @@
+.vs
+SIS.Shared/obj
+*.pdb
+*.dll
+EnrollmentS/obj
+*.exe
+TransactionDemo/bin/
+TransactionDemo/obj/
+CourseS/obj/
