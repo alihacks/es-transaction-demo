@@ -1,4 +1,4 @@
-# es-transaction-demo
+# System.EnterpriseServices Transaction Demo
 Demonstration of using System.EnterpriseServices to take care of transactions against SQL Server without use of COM+/MTS
 
 ## Running
