@@ -12,19 +12,22 @@ namespace SIS.Course
     public class SectionR
     {
 
+        [System.EnterpriseServices.AutoComplete]
         public void RemoveSeat()
         {
             try
             {
-                Helper.RunSql("UPDATE transaction_demo_sections SET open_seats = open_seats - 1 WHERE open_seats > 0 IF @@ROWCOUNT <> 1 RAISERROR('NO MORE SEATS',16,1)"); // This will fail if no seats left
-                int trancount = (int)Helper.RunSql("SELECT @@TRANCOUNT");
-                //Console.WriteLine("SectionR: Trancount (should be > 0): {0}", trancount);
-                ContextUtil.SetComplete();
+                Helper.RunSql("UPDATE transaction_demo_sections SET open_seats = open_seats - 1"); 
+                Console.WriteLine("      SectionR: removed a seat, now have: {0} open seat left (in our transaction)", Helper.GetOpenSeats());
+
+                Helper.RunSql("IF EXISTS(SELECT 1 FROM transaction_demo_sections WHERE open_seats < 0) RAISERROR('Operation resulted in negative open seats',16,1)"); // This will fail if no seats left
+
+                //ContextUtil.SetComplete(); // Not needed since we use autocomplete
             }
             catch (Exception ex)
             {
-                Console.WriteLine("SectionR: Caught exception: {0}", ex.Message);
-                ContextUtil.SetAbort();
+                Console.WriteLine("      SectionR: Caught exception, will throw: {0}", ex.Message);
+                //ContextUtil.SetAbort(); // Not needed since we use autocomplete
                 throw;
             }
         }
