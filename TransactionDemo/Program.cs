@@ -16,6 +16,10 @@ namespace SIS.TransactionDemo
     {
         static void Main(string[] args)
         {
+            if (args.Length > 0)
+            {
+                Helper.SetConnectionString(args[0]);
+            }
             Helper.SetupDb();
 
             Console.WriteLine("Expect to have 3 open seats in our section and have: {0}", Helper.GetOpenSeats());

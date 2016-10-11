@@ -9,12 +9,18 @@ namespace SIS.Shared
 {
     public class Helper
     {
+        private static string connstr = "Data Source=ISISDEVSQL;Initial Catalog=tempdb;Integrated Security=SSPI";
+
         // This is hardcoded for demo, normally it needs to come from config
         public static string GetConnectionString()
         {
-            return "Data Source=ISISDEVSQL;Initial Catalog=tempdb;Integrated Security=SSPI";
+            return connstr;
         }
 
+        public static void SetConnectionString(string cs)
+        {
+            connstr = cs;
+        }
         public static object RunSql(string sqlCommand)
         {
 
