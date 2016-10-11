@@ -46,6 +46,7 @@ if object_id('transaction_demo_sections') is not null drop table transaction_dem
 create table transaction_demo_sections(id int primary key, open_seats int)
 
 insert transaction_demo_sections(id,open_seats) values(1,3)";
+            Console.WriteLine("Setting up clean tables");
             RunSql(setupSql);
 
         }
